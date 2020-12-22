@@ -20,6 +20,12 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final jobSeekers = Provider.of<JobSeekersProvider>(context).jobseekers;
+    int numOfJobSeekers = jobSeekers.length;
+    bool onlyOneJobSeeker = numOfJobSeekers == 1;
+    String isOrAre = onlyOneJobSeeker ? 'is' : 'are';
+    String personOrPeople = onlyOneJobSeeker ? 'person' : 'people';
+
     return AVScaffold(
       title: Image.asset(
         globals.avLogo,
@@ -38,9 +44,19 @@ class HomeView extends StatelessWidget {
       backgroundColor: AVThemes.avLightGreyColor,
       screenContent: Column(
         children: <Widget>[
+          Container(
+            color: AVThemes.avPrimaryColor[500],
+            width: double.infinity,
+            padding: EdgeInsets.symmetric(vertical: globals.halfSpacer),
+            child: Text(
+              'There ${isOrAre} ${numOfJobSeekers} ${personOrPeople} available nearby',
+              style: Theme.of(context).textTheme.headline3,
+              textAlign: TextAlign.center,
+            ),
+          ),
           Expanded(
             child: JobSeekerList(
-              jobSeekers: Provider.of<JobSeekersProvider>(context).jobseekers,
+              jobSeekers: jobSeekers,
               emptyListMessage: globals.noJobSeekersLabel,
             ),
           ),

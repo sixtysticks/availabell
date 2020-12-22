@@ -96,11 +96,14 @@ class JobSeekerListing extends StatelessWidget {
                         style: Theme.of(context).textTheme.subtitle1,
                       ),
                     ),
-                    Text(
-                      jobSeeker.locationName,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.subtitle2,
+                    Container(
+                      width: 210,
+                      child: Text(
+                        jobSeeker.locationName,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.subtitle2,
+                      ),
                     ),
                     Container(
                       width: 210,

@@ -124,7 +124,7 @@ class _AddDetailsViewState extends State<AddDetailsView> {
       itemCount: _skillsListItems.length,
       textField: _skillsListItems.length < 5 ? _textField : null,
       itemBuilder: (index) {
-        final item = _skillsListItems[index];
+        final item = _skillsListItems[index].toUpperCase();
 
         return ItemTags(
           alignment: MainAxisAlignment.start,
@@ -144,7 +144,7 @@ class _AddDetailsViewState extends State<AddDetailsView> {
             borderRadius: BorderRadius.zero,
             onRemoved: () {
               setState(() {
-                _skillsList.add(item);
+                _skillsList.add(item.toUpperCase());
                 _skillsListItems.removeAt(index);
               });
               return true;
@@ -158,15 +158,18 @@ class _AddDetailsViewState extends State<AddDetailsView> {
 
   TagsTextField get _textField {
     return TagsTextField(
+      keyboardType: TextInputType.text,
       width: double.infinity,
       padding: EdgeInsets.zero,
       autofocus: false,
       hintText: 'Enter your main skills (5 max)',
       hintTextColor: AVThemes.avGreyColor,
+      helperText: 'No skills match the keyword',
+      helperTextStyle: Theme.of(context).textTheme.caption,
       suggestionTextColor: AVThemes.avGreyColor,
       textStyle: Theme.of(context).textTheme.bodyText1,
+      constraintSuggestion: false,
       enabled: true,
-      constraintSuggestion: true,
       suggestions: _skillsList,
       onSubmitted: (String str) {
         setState(() {

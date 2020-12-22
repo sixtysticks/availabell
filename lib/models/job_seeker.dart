@@ -11,6 +11,7 @@ class JobSeeker with ChangeNotifier {
   final double latitude;
   final double longitude;
   final List<String> skills;
+  final String linkedInUrl;
   final bool isAvailable;
   final bool worksRemote;
   final bool searchableWhenUnavailable;
@@ -25,6 +26,7 @@ class JobSeeker with ChangeNotifier {
     this.latitude,
     this.longitude,
     this.skills,
+    this.linkedInUrl,
     this.isAvailable,
     this.worksRemote,
     this.searchableWhenUnavailable,

@@ -39,6 +39,7 @@ class JobSeekerList extends StatelessWidget {
               },
             )
           : ListView.builder(
+              padding: const EdgeInsets.only(top: globals.halfSpacer),
               controller: _scrollController,
               itemCount: jobSeekers.length,
               itemBuilder: (context, index) {
