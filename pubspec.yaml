@@ -31,7 +31,6 @@ dependencies:
   autocomplete_textfield: ^1.7.3
   js: ^0.6.2
   mapbox_geocoding: ^0.1.3
-  geolocator: ^6.1.13
   flutter_tags: ^0.4.9+1
 
 dev_dependencies:

@@ -1,9 +1,11 @@
 // Dependency imports
+import 'dart:js' as js;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 // Availabell imports
 import 'package:availabell/providers/job_seekers_provider.dart';
+import 'package:availabell/utilities/geo_locator.dart';
 import 'package:availabell/widgets/misc/globals.dart' as globals;
 import 'package:availabell/widgets/ui/av_themes.dart';
 
@@ -52,7 +54,9 @@ class JobSeekerListing extends StatelessWidget {
     }
 
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        js.context.callMethod('open', [jobSeeker.url]);
+      },
       child: Card(
         elevation: 2,
         margin: const EdgeInsets.fromLTRB(
@@ -99,7 +103,7 @@ class JobSeekerListing extends StatelessWidget {
                     Container(
                       width: 210,
                       child: Text(
-                        jobSeeker.locationName,
+                        Geolocator().formatDistanceBetween2Coords(jobSeeker.latitude, jobSeeker.longitude),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: Theme.of(context).textTheme.subtitle2,

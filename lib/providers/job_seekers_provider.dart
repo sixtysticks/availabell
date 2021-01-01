@@ -15,23 +15,24 @@ class JobSeekersProvider with ChangeNotifier {
       firstName: 'David',
       lastName: 'Gibbs',
       jobTitle: 'Mobile App Developer',
-      jobType: 'Full Time',
+      jobType: 'Full-time',
       locationName: 'Sutton Coldfield, West Midlands, England, United Kingdom',
       skills: [
         'Flutter',
-        'Swift',
+        'iOS Development',
       ],
       latitude: 52.5807836,
       longitude: -1.8247012,
+      url: 'https://www.linkedin.com/in/sixtysticks/',
       isAvailable: true,
-      worksRemote: true,
+      searchableWhenUnavailable: true,
     ),
     JobSeeker(
       id: '2',
       firstName: 'Peter',
       lastName: 'Piper',
       jobTitle: 'Actor',
-      jobType: 'Part Time',
+      jobType: 'Part-time',
       locationName: 'Derby, Derbyshire England, United Kingdom',
       skills: [
         'Drama',
@@ -39,8 +40,26 @@ class JobSeekersProvider with ChangeNotifier {
       ],
       latitude: 52.921902,
       longitude: -1.475640,
+      url: 'https://www.sixtysticks.com/',
       isAvailable: false,
-      worksRemote: true,
+      searchableWhenUnavailable: true,
+    ),
+    JobSeeker(
+      id: '3',
+      firstName: 'Paul',
+      lastName: 'Gascoigne',
+      jobTitle: 'Footballer',
+      jobType: 'Part-time',
+      locationName: 'Newcastle, United Kingdom',
+      skills: [
+        'Scoring',
+        'Crying',
+      ],
+      latitude: 54.977840,
+      longitude: -1.612920,
+      url: 'https://www.twitter.com/sixtysticks',
+      isAvailable: true,
+      searchableWhenUnavailable: false,
     ),
   ];
 
@@ -66,7 +85,10 @@ class JobSeekersProvider with ChangeNotifier {
           'location_name': jobSeeker.locationName,
           'latitude': jobSeeker.latitude,
           'longitude': jobSeeker.longitude,
-          'skills': jobSeeker.skills
+          'skills': jobSeeker.skills,
+          'url': jobSeeker.url,
+          'is_available': jobSeeker.isAvailable,
+          'searchable_when_unavailable': jobSeeker.searchableWhenUnavailable,
         }),
       );
       print(response.body);

@@ -22,7 +22,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext coxntext) {
+  Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<JobSeekersProvider>(create: (context) => JobSeekersProvider()),

@@ -42,25 +42,31 @@ class HomeView extends StatelessWidget {
         ),
       ],
       backgroundColor: AVThemes.avLightGreyColor,
-      screenContent: Column(
-        children: <Widget>[
-          Container(
-            color: AVThemes.avPrimaryColor[500],
-            width: double.infinity,
-            padding: EdgeInsets.symmetric(vertical: globals.halfSpacer),
-            child: Text(
-              'There ${isOrAre} ${numOfJobSeekers} ${personOrPeople} available nearby',
-              style: Theme.of(context).textTheme.headline3,
-              textAlign: TextAlign.center,
+      screenContent: Container(
+        child: Column(
+          children: <Widget>[
+            Container(
+              color: AVThemes.avPrimaryColor[500],
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(vertical: globals.halfSpacer),
+              child: Column(
+                children: [
+                  Text(
+                    'There ${isOrAre} ${numOfJobSeekers} ${personOrPeople} available nearby',
+                    style: Theme.of(context).textTheme.headline3,
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
             ),
-          ),
-          Expanded(
-            child: JobSeekerList(
-              jobSeekers: jobSeekers,
-              emptyListMessage: globals.noJobSeekersLabel,
+            Expanded(
+              child: JobSeekerList(
+                jobSeekers: jobSeekers,
+                emptyListMessage: globals.noJobSeekersLabel,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

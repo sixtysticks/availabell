@@ -46,13 +46,14 @@ class _AddDetailsViewState extends State<AddDetailsView> {
     firstName: '',
     lastName: '',
     jobTitle: '',
-    jobType: '',
+    jobType: globals.fullTimeLabel,
     locationName: '',
     latitude: 0.0,
     longitude: 0.0,
     skills: [],
+    url: '',
     isAvailable: false,
-    worksRemote: false,
+    searchableWhenUnavailable: false,
   );
 
   /**
@@ -173,8 +174,8 @@ class _AddDetailsViewState extends State<AddDetailsView> {
       suggestions: _skillsList,
       onSubmitted: (String str) {
         setState(() {
-          _skillsList.remove(str);
-          _skillsListItems.add(str);
+          _skillsList.remove(str.toLowerCase());
+          _skillsListItems.add(str.toLowerCase());
         });
       },
     );
@@ -186,7 +187,7 @@ class _AddDetailsViewState extends State<AddDetailsView> {
 
   void _saveForm(jobSeeker) {
     final isValid = _form.currentState.validate();
-    if (!isValid) {
+    if (!isValid || _locationName.isEmpty) {
       return;
     }
     _form.currentState.save();
@@ -273,6 +274,9 @@ class _AddDetailsViewState extends State<AddDetailsView> {
                             latitude: _latitude,
                             longitude: _longitude,
                             skills: _skillsListItems.isNotEmpty ? _skillsListItems : [],
+                            url: _editedJobSeeker.url,
+                            isAvailable: _editedJobSeeker.isAvailable,
+                            searchableWhenUnavailable: _editedJobSeeker.searchableWhenUnavailable,
                           );
                         },
                       ),
@@ -297,6 +301,9 @@ class _AddDetailsViewState extends State<AddDetailsView> {
                             latitude: _latitude,
                             longitude: _longitude,
                             skills: _skillsListItems.isNotEmpty ? _skillsListItems : [],
+                            url: _editedJobSeeker.url,
+                            isAvailable: _editedJobSeeker.isAvailable,
+                            searchableWhenUnavailable: _editedJobSeeker.searchableWhenUnavailable,
                           );
                         },
                       ),
@@ -321,6 +328,9 @@ class _AddDetailsViewState extends State<AddDetailsView> {
                             latitude: _latitude,
                             longitude: _longitude,
                             skills: _skillsListItems.isNotEmpty ? _skillsListItems : [],
+                            url: _editedJobSeeker.url,
+                            isAvailable: _editedJobSeeker.isAvailable,
+                            searchableWhenUnavailable: _editedJobSeeker.searchableWhenUnavailable,
                           );
                         },
                       ),
@@ -366,6 +376,9 @@ class _AddDetailsViewState extends State<AddDetailsView> {
                                       latitude: _latitude,
                                       longitude: _longitude,
                                       skills: _skillsListItems.isNotEmpty ? _skillsListItems : [],
+                                      url: _editedJobSeeker.url,
+                                      isAvailable: _editedJobSeeker.isAvailable,
+                                      searchableWhenUnavailable: _editedJobSeeker.searchableWhenUnavailable,
                                     );
                                   }),
                             ),
@@ -411,6 +424,95 @@ class _AddDetailsViewState extends State<AddDetailsView> {
                           ),
                           _skillsTags
                         ],
+                      ),
+                      SizedBox(height: globals.halfSpacer),
+                      AVTextFormField(
+                        labelText: globals.urlLabel,
+                        keyboardType: TextInputType.url,
+                        textInputAction: TextInputAction.next,
+                        initialValueText: 'www.',
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'Field can\'t be blank';
+                          }
+                          if (!value.startsWith('www.') || value == 'www.') {
+                            return 'Please enter a valid web address';
+                          }
+                          return null;
+                        },
+                        onSaved: (value) {
+                          _editedJobSeeker = JobSeeker(
+                            firstName: _editedJobSeeker.firstName,
+                            lastName: _editedJobSeeker.lastName,
+                            jobTitle: _editedJobSeeker.jobTitle,
+                            jobType: _editedJobSeeker.jobType,
+                            locationName: _locationName,
+                            latitude: _latitude,
+                            longitude: _longitude,
+                            skills: _skillsListItems.isNotEmpty ? _skillsListItems : [],
+                            url: 'https://$value',
+                            isAvailable: _editedJobSeeker.isAvailable,
+                            searchableWhenUnavailable: _editedJobSeeker.searchableWhenUnavailable,
+                          );
+                        },
+                      ),
+                      SizedBox(height: globals.halfSpacer),
+                      SwitchListTile(
+                        value: _editedJobSeeker.isAvailable,
+                        contentPadding: EdgeInsets.zero,
+                        onChanged: (value) {
+                          setState(() {
+                            _editedJobSeeker = JobSeeker(
+                              firstName: _editedJobSeeker.firstName,
+                              lastName: _editedJobSeeker.lastName,
+                              jobTitle: _editedJobSeeker.jobTitle,
+                              jobType: _editedJobSeeker.jobType,
+                              locationName: _locationName,
+                              latitude: _latitude,
+                              longitude: _longitude,
+                              skills: _skillsListItems.isNotEmpty ? _skillsListItems : [],
+                              url: _editedJobSeeker.url,
+                              isAvailable: value,
+                              searchableWhenUnavailable: _editedJobSeeker.searchableWhenUnavailable,
+                            );
+                          });
+                        },
+                        activeTrackColor: AVThemes.avPrimaryColor[200],
+                        activeColor: AVThemes.avPrimaryColor,
+                        title: Text(
+                          'Are you currently available for work?',
+                          style: Theme.of(context).textTheme.bodyText1,
+                          textAlign: TextAlign.start,
+                        ),
+                      ),
+                      SizedBox(height: globals.halfSpacer),
+                      SwitchListTile(
+                        value: _editedJobSeeker.searchableWhenUnavailable,
+                        contentPadding: EdgeInsets.zero,
+                        onChanged: (value) {
+                          setState(() {
+                            _editedJobSeeker = JobSeeker(
+                              firstName: _editedJobSeeker.firstName,
+                              lastName: _editedJobSeeker.lastName,
+                              jobTitle: _editedJobSeeker.jobTitle,
+                              jobType: _editedJobSeeker.jobType,
+                              locationName: _locationName,
+                              latitude: _latitude,
+                              longitude: _longitude,
+                              skills: _skillsListItems.isNotEmpty ? _skillsListItems : [],
+                              url: _editedJobSeeker.url,
+                              isAvailable: _editedJobSeeker.isAvailable,
+                              searchableWhenUnavailable: value,
+                            );
+                          });
+                        },
+                        activeTrackColor: AVThemes.avPrimaryColor[200],
+                        activeColor: AVThemes.avPrimaryColor,
+                        title: Text(
+                          'Would you like to be searchable to recruiters, even when you are employed?',
+                          style: Theme.of(context).textTheme.bodyText1,
+                          textAlign: TextAlign.start,
+                        ),
                       ),
                       SizedBox(height: 30.0),
                       SGButton(

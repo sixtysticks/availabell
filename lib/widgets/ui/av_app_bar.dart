@@ -23,10 +23,11 @@ class SGAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: AVThemes.avLightColor,
-      title: title,
-      elevation: 2,
       actions: actions,
+      backgroundColor: AVThemes.avLightColor,
+      // centerTitle: false,
+      elevation: 2,
+      title: title,
     );
   }
 

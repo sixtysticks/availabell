@@ -1,5 +1,9 @@
 library availabell.globals;
 
+// HARD CODINGS
+const hardcodedLat = 52.5807836;
+const hardcodedLon = -1.8247012;
+
 // Measurements
 const double halfSpacer = 10.0;
 const double spacer = 20.0;
@@ -17,6 +21,7 @@ const String jobTitleLabel = 'Job title';
 const String jobTypeLabel = 'Job type';
 const String locationLabel = 'Location';
 const String skillsLabel = 'Skills';
+const String urlLabel = 'Personal website';
 const String finishLabel = 'Finish';
 const String fullTimeLabel = "Full-time";
 const String contractLabel = "Contract";

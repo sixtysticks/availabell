@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Availabell imports
 import 'package:availabell/widgets/misc/globals.dart' as globals;
 import 'package:availabell/widgets/ui/av_themes.dart';
+import 'package:flutter/services.dart';
 
 class AVTextFormField extends StatelessWidget {
   final String labelText;
@@ -14,6 +15,8 @@ class AVTextFormField extends StatelessWidget {
   final FocusNode fieldFocusNodeToRequest;
   final Function validator;
   final Function onSaved;
+  final int maxLength;
+  final String initialValueText;
 
   AVTextFormField({
     Key key,
@@ -25,6 +28,8 @@ class AVTextFormField extends StatelessWidget {
     this.fieldFocusNodeToRequest = null,
     this.validator,
     this.onSaved,
+    this.maxLength,
+    this.initialValueText,
   }) : super(key: key);
 
   @override
@@ -72,6 +77,9 @@ class AVTextFormField extends StatelessWidget {
             },
             validator: validator,
             onSaved: onSaved,
+            maxLength: maxLength,
+            maxLengthEnforcement: MaxLengthEnforcement.enforced,
+            initialValue: initialValueText,
           ),
         ],
       ),
