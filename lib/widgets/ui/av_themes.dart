@@ -31,16 +31,16 @@ class AVThemes {
 
   static final ThemeData mainTheme = ThemeData(
     primarySwatch: avPrimaryColor,
-    accentColor: avPinkColor,
+    // accentColor: avPinkColor,
     dividerColor: avGreyColor,
     appBarTheme: AppBarTheme(
       iconTheme: IconThemeData(color: avDarkColor),
-      textTheme: ThemeData.light().textTheme.copyWith(
-            headline1: TextStyle(
-              fontFamily: globals.defaultFontName,
-              fontSize: appBarFontSize,
-            ),
-          ),
+      // textTheme: ThemeData.light().textTheme.copyWith(
+      //       headline1: TextStyle(
+      //         fontFamily: globals.defaultFontName,
+      //         fontSize: appBarFontSize,
+      //       ),
+      //     ),
     ),
     fontFamily: globals.defaultFontName,
     textTheme: ThemeData.light().textTheme.copyWith(

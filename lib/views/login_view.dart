@@ -53,9 +53,9 @@ class LoginView extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: globals.spacer),
-                FlatButton(
+                ElevatedButton(
                   onPressed: _launchURL,
-                  padding: EdgeInsets.all(0.0),
+                  // padding: EdgeInsets.all(0.0),
                   child: Image.asset(
                     globals.linkedInLogo,
                     fit: BoxFit.contain,

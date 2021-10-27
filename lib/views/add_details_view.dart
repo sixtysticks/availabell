@@ -1,5 +1,5 @@
 // Dependency imports
-import 'dart:html';
+// import 'dart:html';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tags/flutter_tags.dart';
@@ -100,6 +100,7 @@ class _AddDetailsViewState extends State<AddDetailsView> {
       setState(() {
         _locationName = reverseModel.features[0].placeName;
       });
+      // ignore: non_constant_identifier_names
     } catch (Exception) {
       return 'Reverse Geocoding Error';
     }
@@ -198,7 +199,7 @@ class _AddDetailsViewState extends State<AddDetailsView> {
           builder: (context) => AlertDialog(
             title: Text('The error: $error'),
             actions: <Widget>[
-              FlatButton(
+              ElevatedButton(
                 child: Text('Close'),
                 onPressed: () => {
                   Navigator.of(context).pop(),
